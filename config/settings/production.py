@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Local settings
+Production settings
 """
 
 from .common import *  # noqa
