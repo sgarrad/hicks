@@ -6,8 +6,7 @@ python:
 services: postgresql
 
 before_install:
-  - export DJANGO_SETTINGS_MODULE=hicks.settings.travis
-  - export PIP_USE_MIRRORS=true
+  - export DJANGO_SETTINGS_MODULE=config.settings.travis
 
 install:
   - pip install -r requirements.txt
