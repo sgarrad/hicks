@@ -1,0 +1,22 @@
+language: python
+
+python:
+  - 2.7
+
+services: postgresql
+
+before_install:
+  - export DJANGO_SETTINGS_MODULE=config.settings.travis
+
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+
+before_script:
+  - psql -c 'CREATE DATABASE hicks;' -U postgres
+
+script:
+  coverage run --source='hicks' manage.py test
+
+after_success:
+  coveralls
