@@ -34,11 +34,16 @@ DJANGO_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
 THIRD_PARTY_APPS = (
     # Third party django apps
+    # django-allauth required apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount'
 )
 LOCAL_APPS = (
     # Project specific custom apps
@@ -104,9 +109,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# Configure site ID https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SITE_ID
+SITE_ID = 1
 
 # Static file configuration
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -118,4 +122,12 @@ STATIC_URL = '/static/'
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
     os.path.join(APPS_DIR, 'static'),
+)
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = (
+    # Needed for login by username in Django admin
+    'django.contrib.auth.backends.ModelBackend',
+    # django-allauth specific authentication methods
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
