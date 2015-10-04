@@ -131,3 +131,5 @@ AUTHENTICATION_BACKENDS = (
     # django-allauth specific authentication methods
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+LOGIN_REDIRECT_URL = '/'
