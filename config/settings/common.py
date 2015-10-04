@@ -43,7 +43,9 @@ THIRD_PARTY_APPS = (
     # django-allauth required apps
     'allauth',
     'allauth.account',
-    'allauth.socialaccount'
+    'allauth.socialaccount',
+    # django-crispy-forms forms for bootstrap themed forms
+    'crispy_forms',
 )
 LOCAL_APPS = (
     # Project specific custom apps
@@ -81,6 +83,9 @@ TEMPLATES = [
         },
     },
 ]
+
+# django-crispy-forms template settings
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
