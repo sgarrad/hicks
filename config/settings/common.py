@@ -22,7 +22,6 @@ APPS_DIR = os.path.join(BASE_DIR, 'hicks')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'n(icgj9id*@1$fty9y_ln+@7tyxsop80zfs+u2=e67u)tqabh-'
 
-
 ALLOWED_HOSTS = ['*']
 
 
@@ -137,4 +136,11 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+# django-allauth configuration settings
 LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_ADAPTER = "hicks.accounts.adapter.HicksAccountAdapter"
+HICKS_SIGNUPS_ENABLED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
