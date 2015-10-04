@@ -13,15 +13,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+APPS_DIR = os.path.join(BASE_DIR, 'hicks')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'n(icgj9id*@1$fty9y_ln+@7tyxsop80zfs+u2=e67u)tqabh-'
-
 
 ALLOWED_HOSTS = ['*']
 
@@ -34,11 +33,18 @@ DJANGO_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
 THIRD_PARTY_APPS = (
     # Third party django apps
+    # django-allauth required apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # django-crispy-forms forms for bootstrap themed forms
+    'crispy_forms',
 )
 LOCAL_APPS = (
     # Project specific custom apps
@@ -62,7 +68,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(APPS_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,6 +82,9 @@ TEMPLATES = [
         },
     },
 ]
+
+# django-crispy-forms template settings
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -102,8 +113,34 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Configure site ID https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SITE_ID
+SITE_ID = 1
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# Static file configuration
+# https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = (
+    os.path.join(APPS_DIR, 'static'),
+)
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = (
+    # Needed for login by username in Django admin
+    'django.contrib.auth.backends.ModelBackend',
+    # django-allauth specific authentication methods
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# django-allauth configuration settings
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_ADAPTER = "hicks.accounts.adapter.HicksAccountAdapter"
+HICKS_SIGNUPS_ENABLED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
