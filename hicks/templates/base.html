@@ -41,6 +41,14 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'account_signup' %}">Sign up</a></li>
+                    <li><a href="{% url 'account_login' %}">Log in</a></li>
+                {% endif %}
+            </ul>
         </div>
         <!--/.nav-collapse -->
     </div>

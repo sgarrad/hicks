@@ -12,3 +12,5 @@ DEBUG = True
 MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
 INSTALLED_APPS += ('debug_toolbar',)
 
+# E-mail settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

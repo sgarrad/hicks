@@ -33,6 +33,12 @@ urlpatterns = [
     url(  # /admin/
           regex=r'^admin/',
           view=include(admin.site.urls)),
+
+    # django-allauth
+    url(  # /accounts/
+          regex=r'^accounts/',
+          view=include('allauth.urls')
+          ),
 ]
 
 if settings.DEBUG:
