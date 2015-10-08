@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Language: {{ object.display_name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ object.display_name }}</h2>
+
+                <p>Language code: {{ object.code }}</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

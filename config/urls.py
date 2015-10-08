@@ -39,6 +39,12 @@ urlpatterns = [
           regex=r'^accounts/',
           view=include('allauth.urls')
           ),
+
+    # hicks_language
+    url(  # /lang/
+          regex=r'^lang/',
+          view=include('hicks.hicks_language.urls', namespace='hicks_language'),
+          ),
 ]
 
 if settings.DEBUG:
