@@ -1,1 +1,10 @@
 {% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Welcome to Hicks glossary management!</h2>
+
+        <p>See list of projects at <a href="{% url 'hicks_glossary:list' %}">/project</a></p>
+    </div>
+
+{% endblock content %}
