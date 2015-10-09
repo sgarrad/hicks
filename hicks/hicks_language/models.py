@@ -17,4 +17,4 @@ class Language(models.Model):
         ordering = ['code']
 
     def __str__(self):
-        return "{0} - {1}".format(self.display_name, self.code)
+        return u"{0} - {1}".format(self.display_name, self.code)
