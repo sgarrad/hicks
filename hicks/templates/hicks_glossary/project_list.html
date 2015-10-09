@@ -9,7 +9,9 @@
 
         <div class="list-group">
             {% for project in project_list %}
-                <h4 class="list-group-item-heading">{{ project.name }}</h4>
+                <a href="{% url 'hicks_glossary:detail' project.slug %}">
+                    <h4 class="list-group-item-heading">{{ project.name }}</h4>
+                </a>
             {% endfor %}
         </div>
 

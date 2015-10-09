@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Project: {{ object.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ object.name }}</h2>
+
+                <p>Base language: {{ object.base_language.code }} ({{ object.base_language.display_name }})</p>
+
+                <p>Supported languages:</p>
+                {% for language in object.supported_languages.all %}
+                    <li>{{ language.code }} ({{ language.display_name }})</li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
