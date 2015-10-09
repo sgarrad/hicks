@@ -1,0 +1,45 @@
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+
+@python_2_unicode_compatible
+class Project(models.Model):
+    name = models.CharField(max_length=255,
+                            null=False,
+                            unique=True,
+                            verbose_name='Name')
+
+    slug = models.SlugField(max_length=50)
+
+    base_language = models.ForeignKey('hicks_language.Language',
+                                      related_name='project_base_language')
+
+    supported_languages = models.ManyToManyField('hicks_language.Language')
+
+    def __str__(self):
+        return self.name
+
+
+@python_2_unicode_compatible
+class Definition(models.Model):
+    definition = models.TextField(null=False,
+                                  verbose_name='Definition')
+
+    project = models.ForeignKey('Project')
+
+    def __str__(self):
+        return self.definition
+
+
+@python_2_unicode_compatible
+class Term(models.Model):
+    term = models.TextField(null=False,
+                            verbose_name='Term')
+
+    definition = models.ForeignKey('Definition',
+                                   related_name='term_definition')
+
+    language = models.ForeignKey('hicks_language.Language',
+                                 related_name='term_language')
+
+    def __str__(self):
+        return self.term

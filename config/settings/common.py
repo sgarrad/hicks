@@ -49,6 +49,8 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     # Project specific custom apps
     'hicks.hicks_language',
+    # Main glossary app
+    'hicks.hicks_glossary',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
