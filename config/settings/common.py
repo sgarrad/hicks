@@ -51,6 +51,8 @@ LOCAL_APPS = (
     'hicks.hicks_language',
     # Main glossary app
     'hicks.hicks_glossary',
+    # Import/export glossary files
+    'hicks.hicks_import_export',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

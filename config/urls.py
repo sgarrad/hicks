@@ -51,6 +51,12 @@ urlpatterns = [
           regex=r'^project/',
           view=include('hicks.hicks_glossary.urls', namespace='hicks_glossary'),
           ),
+
+    # hicks_import_export
+    url(  # /io/
+          regex=r'^io/',
+          view=include('hicks.hicks_import_export.urls', namespace='hicks_import_export'),
+          ),
 ]
 
 if settings.DEBUG:
