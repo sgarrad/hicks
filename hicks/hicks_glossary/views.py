@@ -14,6 +14,6 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     slug_url_kwarg = 'slug'
 
 
-class ProjectLanguageView(View):
+class ProjectLanguageView(LoginRequiredMixin, View):
     def get(self, request, project_slug, language_code):
         return HttpResponse('{} - {}'.format(project_slug, language_code))
