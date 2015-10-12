@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Project: {{ object.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ object.name }}</h2>
+
+                <p>Base language: {{ object.base_language.code }} ({{ object.base_language.display_name }})</p>
+
+                <p>Supported languages:</p>
+                {% for language in object.supported_languages.all %}
+                    <li>
+                        <a href="{% url 'hicks_glossary:language_detail' project_slug=object.slug language_code=language.code %}">
+                            {{ language.display_name }} - {{ language.code }}</a></li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -24,7 +24,8 @@ class Definition(models.Model):
     definition = models.TextField(null=False,
                                   verbose_name='Definition')
 
-    project = models.ForeignKey('Project')
+    project = models.ForeignKey(to='Project',
+                                related_name='definitions')
 
     def __str__(self):
         return self.definition

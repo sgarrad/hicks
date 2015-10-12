@@ -45,6 +45,12 @@ urlpatterns = [
           regex=r'^lang/',
           view=include('hicks.hicks_language.urls', namespace='hicks_language'),
           ),
+
+    # hicks_glossary
+    url(  # /project/
+          regex=r'^project/',
+          view=include('hicks.hicks_glossary.urls', namespace='hicks_glossary'),
+          ),
 ]
 
 if settings.DEBUG:
