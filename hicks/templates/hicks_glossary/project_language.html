@@ -12,7 +12,7 @@
             {% for definition in definitions %}
                 <div class="row">
                     <div class="col-md-4">
-                        {{ definition.definition }}
+                        {{ definition.definition.description }}
                     </div>
                     <div class="col-md-4">
                         {% for source in definition.source %}

@@ -21,14 +21,14 @@ class Project(models.Model):
 
 @python_2_unicode_compatible
 class Definition(models.Model):
-    definition = models.TextField(null=False,
-                                  verbose_name='Definition')
+    description = models.TextField(null=False,
+                                  verbose_name='Description')
 
     project = models.ForeignKey(to='Project',
                                 related_name='definitions')
 
     def __str__(self):
-        return self.definition
+        return self.description
 
 
 @python_2_unicode_compatible
