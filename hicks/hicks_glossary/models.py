@@ -37,7 +37,7 @@ class Term(models.Model):
                             verbose_name='Term')
 
     definition = models.ForeignKey('Definition',
-                                   related_name='term_definition')
+                                   related_name='terms')
 
     language = models.ForeignKey('hicks_language.Language',
                                  related_name='term_language')
