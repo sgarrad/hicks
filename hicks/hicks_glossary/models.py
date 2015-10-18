@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models import F
 from django.utils.encoding import python_2_unicode_compatible
+
 
 @python_2_unicode_compatible
 class Project(models.Model):
@@ -22,13 +24,16 @@ class Project(models.Model):
 @python_2_unicode_compatible
 class Definition(models.Model):
     description = models.TextField(null=False,
-                                  verbose_name='Description')
+                                   verbose_name='Description')
 
     project = models.ForeignKey(to='Project',
                                 related_name='definitions')
 
     def __str__(self):
         return self.description
+
+    def source_terms(self):
+        return self.terms.filter(language=F('definition__project__base_language'))
 
 
 @python_2_unicode_compatible

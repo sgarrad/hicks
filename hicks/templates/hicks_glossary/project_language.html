@@ -12,17 +12,16 @@
             {% for definition in definitions %}
                 <div class="row">
                     <div class="col-md-4">
-                        {{ definition.definition.description }}
+                        {{ definition.description }}
                     </div>
                     <div class="col-md-4">
-                        {% for source in definition.source %}
-
-                            {{ source.term }}
+                        {% for source in definition.source_terms %}
+                            {{ source.term }}<br/>
                         {% endfor %}
                     </div>
                     <div class="col-md-4">
-                        {% for target in definition.target %}
-                            {{ target.term }}
+                        {% for term in definition.terms.all %}
+                            {{ term }}<br/>
                         {% endfor %}
                     </div>
                 </div>
