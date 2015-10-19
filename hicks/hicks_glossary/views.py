@@ -33,6 +33,7 @@ class ProjectLanguageView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(ProjectLanguageView, self).get_context_data(**kwargs)
         context.update({
-            'project': self.project
+            'project': self.project,
+            'target_language': self.target_language
         })
         return context
