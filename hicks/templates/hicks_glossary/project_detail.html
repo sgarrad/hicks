@@ -16,7 +16,11 @@
                 {% for language in object.supported_languages.all %}
                     <li>
                         <a href="{% url 'hicks_glossary:language_detail' project_slug=object.slug language_code=language.code %}">
-                            {{ language.display_name }} - {{ language.code }}</a></li>
+                            {{ language.display_name }} - {{ language.code }}</a> -
+                        <a href="{% url 'hicks_glossary:project_language_term_list' project_slug=object.slug language_code=language.code %}">
+                            by source term
+                        </a>
+                    </li>
                 {% endfor %}
             </div>
         </div>
