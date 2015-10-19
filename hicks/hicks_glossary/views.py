@@ -37,3 +37,28 @@ class ProjectLanguageView(LoginRequiredMixin, ListView):
             'target_language': self.target_language
         })
         return context
+
+
+class ProjectLanguageTermList(LoginRequiredMixin, ListView):
+    template_name = 'hicks_glossary/project_language_term_list.html'
+    context_object_name = 'terms'
+    model = Term
+
+    def dispatch(self, request, *args, **kwargs):
+        self.project = get_object_or_404(Project, slug=kwargs['project_slug'])
+        self.target_language = get_object_or_404(Language, code=kwargs['language_code'])
+        return super(ProjectLanguageTermList, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = Term.source_terms.filter(definition__project=self.project).extra(order_by=['term'])
+        qs = qs.prefetch_related(
+            Prefetch('definition__terms', Term.objects.all().filter(language=self.target_language)))
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectLanguageTermList, self).get_context_data(**kwargs)
+        context.update({
+            'project': self.project,
+            'target_language': self.target_language
+        })
+        return context

@@ -36,6 +36,11 @@ class Definition(models.Model):
         return self.terms.filter(language=F('definition__project__base_language'))
 
 
+class SourceTermManager(models.Manager):
+    def get_queryset(self):
+        return Term.objects.filter(language=F('definition__project__base_language'))
+
+
 @python_2_unicode_compatible
 class Term(models.Model):
     term = models.TextField(null=False,
@@ -46,6 +51,9 @@ class Term(models.Model):
 
     language = models.ForeignKey('hicks_language.Language',
                                  related_name='term_language')
+
+    objects = models.Manager()
+    source_terms = SourceTermManager()
 
     def __str__(self):
         return self.term

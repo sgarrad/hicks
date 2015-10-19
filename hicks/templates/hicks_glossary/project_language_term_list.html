@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Project: {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ project.name }}</h2>
+
+            <div class="row">
+                <div class="col-md-4"><h4>{{ project.base_language.display_name }} Terms</h4></div>
+                <div class="col-md-4"><h4>Definition</h4></div>
+                <div class="col-md-4"><h4>{{ target_language.display_name }} Terms</h4></div>
+            </div>
+            {% for term in terms %}
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ term.term }}<br/>
+                    </div>
+                    <div class="col-md-4">
+                        {{ term.definition.description }}
+                    </div>
+                    <div class="col-md-4">
+                        {% for trans_terms in term.definition.terms.all %}
+                            {{ trans_terms.term }}<br/>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}
+
